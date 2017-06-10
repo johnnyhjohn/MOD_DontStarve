@@ -264,3 +264,22 @@ local master_postinit = function(inst)
 end
 
 return MakePlayerCharacter("growlie", prefabs, assets, common_postinit, master_postinit, start_inv)
+	
+	
+	inst.components.health:SetMaxHealth(100)
+	inst.components.hunger:SetMax(100)
+	inst.components.sanity:SetMax(100)
+	inst.components.eater.stale_hunger = 1
+    inst.components.eater.stale_health = 1
+
+    inst.level = 0
+	inst.components.eater:SetOnEatFn(oneat)
+	inst.OnSave = onsave
+	inst.OnPreLoad = onpreload
+
+	local refreshTime = 1/5
+ 	inst:DoPeriodicTask(refreshTime, function() growlie(inst, refreshTime) end)
+	
+end
+
+return MakePlayerCharacter("growlie", prefabs, assets, common_postinit, master_postinit, start_inv)
