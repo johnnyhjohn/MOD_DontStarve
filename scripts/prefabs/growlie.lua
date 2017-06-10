@@ -136,7 +136,7 @@ local function growlie(inst)
   		inst.components.combat.damagemultiplier = 1
   		inst.components.locomotor.walkspeed = (TUNING.WILSON_WALK_SPEED * 0.9)
      	inst.components.locomotor.runspeed = (TUNING.WILSON_RUN_SPEED * 0.9)
-  		inst.Light:Enable(false)
+  		inst.components.playervision:ForceNightVision(false)
   		inst.components.hunger.hungerrate = 1.0 * TUNING.WILSON_HUNGER_RATE
   		inst.components.combat.min_attack_period = 2.0
 
@@ -144,7 +144,7 @@ local function growlie(inst)
   		inst.components.combat.damagemultiplier = 1.5
  		inst.components.locomotor.walkspeed = (TUNING.WILSON_WALK_SPEED * 1.4)
      	inst.components.locomotor.runspeed = (TUNING.WILSON_RUN_SPEED * 1.4)
-  		inst.Light:Enable(false)
+  		inst.components.playervision:ForceNightVision(false)
   		inst.components.hunger.hungerrate = 1.5 * TUNING.WILSON_HUNGER_RATE
   		inst.components.combat.min_attack_period = 1.3
  		
@@ -173,11 +173,7 @@ local function growlie(inst)
 
 		inst.components.sanity:Recalc(1)
   
-  		inst.Light:Enable(true)
-  		inst.Light:SetRadius(10)
-  		inst.Light:SetFalloff(0.5)
-  		inst.Light:SetIntensity(.7)
-  		inst.Light:SetColour(255/255,100/255,225/255)
+  		inst.components.playervision:ForceNightVision(true)
  	end
 end
 
