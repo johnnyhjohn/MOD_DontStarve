@@ -37,25 +37,25 @@ local require = GLOBAL.require
 local STRINGS = GLOBAL.STRINGS
 
 -- The character select screen lines
-STRINGS.CHARACTER_TITLES.growlie = "The Demonic Prisoner"
-STRINGS.CHARACTER_NAMES.growlie = "Growlie"
-STRINGS.CHARACTER_DESCRIPTIONS.growlie = "*Not entirely sane\n*Doesn't need much food\n*Secretes nightmare fuel (after shaving)"
-STRINGS.CHARACTER_QUOTES.growlie = "\"Wish I wasn't here.\""
+STRINGS.CHARACTER_TITLES.growlie = "The Monster Ghoul"
+STRINGS.CHARACTER_NAMES.growlie = "Waristela"
+STRINGS.CHARACTER_DESCRIPTIONS.growlie = "*Eat raw monster meat and become a monster.\n*Enjoys the night."
+STRINGS.CHARACTER_QUOTES.growlie = "\"I wasn't supposed to be in here.\""
 
 -- Custom speech strings
 STRINGS.CHARACTERS.GROWLIE = require "speech_growlie"
 
 -- The character's name as appears in-game 
-STRINGS.NAMES.GROWLIE = "Growlie"
+STRINGS.NAMES.GROWLIE = "Waristela"
 
 -- The default responses of examining the character
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.GROWLIE = 
 {
-	GENERIC = "It's Growlie!",
-	ATTACKER = "That Growlie looks shifty...",
+	GENERIC = "It's Waristela!",
+	ATTACKER = "That Waristela looks shifty...",
 	MURDERER = "Murderer!",
-	REVIVER = "Growlie, friend of ghosts.",
-	GHOST = "Growlie could use a heart.",
+	REVIVER = "Waristela, friend of ghosts.",
+	GHOST = "Waristela could use a heart.",
 }
 
 

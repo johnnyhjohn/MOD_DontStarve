@@ -181,9 +181,7 @@ local function growlie(inst)
  	end
 end
 
--- This initializes for both clients and the host
 local common_postinit = function(inst) 
-	-- Minimap icon
 	inst.MiniMapEntity:SetIcon( "growlie.tex" )
 end
 
@@ -241,16 +239,11 @@ local function onsave(inst, data)
 	data.level = inst.level
 end
 
--- This initializes for the host only
 local master_postinit = function(inst)
-	-- choose which sounds this character will play
-	inst.soundsname = "wendy"
-	-- Stats	
+	inst.soundsname = "wendy"	
 	
 	inst.components.health:SetMaxHealth(100)
 	inst.components.hunger:SetMax(100)
-	--inst.components.sanity:SetMax(100)
-	--inst.components.sanity.current = 10
 	inst.components.eater.stale_hunger = 1
     inst.components.eater.stale_health = 1
 
