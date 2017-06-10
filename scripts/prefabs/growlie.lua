@@ -130,6 +130,20 @@ local start_inv = {
 	"blue_cap"
 }
 
+local function initNightVision( inst )
+
+	inst.components.playervision:ForceNightVision(true)
+	local NIGHTVISION_COLOURCUBES = {
+	    day 	= "images/colour_cubes/night04_cc.tex",
+	    dusk 	= "images/colour_cubes/night04_cc.tex",
+	    night 	= "images/colour_cubes/night04_cc.tex",
+	    full_moon = "images/colour_cubes/night04_cc.tex",
+	}
+
+	inst.components.playervision:SetCustomCCTable(NIGHTVISION_COLOURCUBES)
+
+end
+
 local function growlie(inst)
  	
  	if TheWorld.state.phase == "day" then
@@ -156,31 +170,19 @@ local function growlie(inst)
   		inst.components.combat.min_attack_period = 0.5
   		inst.components.sanity.night_drain_mult = 0.0
 
-  		local sanityMultiple = 1
-		if inst.level > 0 then
-   			sanityMultiple = inst.level
-		end
+  		if inst.level > 4 then
+  			initNightVision(inst)
+  		end
 
-  		local sanitytogain = inst.components.sanity.max * (sanityMultiple * 0.0001)
+  		local sanitytogain = inst.components.sanity.max * (inst.level * 0.0001)
 		--inst.components.sanity.current = sanitytogain + inst.components.sanity.current
 		inst.components.sanity:DoDelta(sanitytogain)
 
-		local currentSanity = inst.components.sanity:GetPercent()
 		if inst.components.sanity:IsSane() then 
  			inst.components.sanity.sane = true
 		else
    			inst.components.sanity.sane = false
 		end
-  
-  		inst.components.playervision:ForceNightVision(true)
-		local NIGHTVISION_COLOURCUBES = {
-		    day = "images/colour_cubes/ghost_cc.tex",
-		    dusk = "images/colour_cubes/ghost_cc.tex",
-		    night = "images/colour_cubes/ghost_cc.tex",
-		    full_moon = "images/colour_cubes/ghost_cc.tex",
-		}
-
-  		inst.components.playervision:SetCustomCCTable(NIGHTVISION_COLOURCUBES)
  	end
 end
 
