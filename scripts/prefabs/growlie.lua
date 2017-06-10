@@ -162,7 +162,8 @@ local function growlie(inst)
 		end
 
   		local sanitytogain = inst.components.sanity.max * (sanityMultiple * 0.0001)
-		inst.components.sanity.current = sanitytogain + inst.components.sanity.current
+		--inst.components.sanity.current = sanitytogain + inst.components.sanity.current
+		inst.components.sanity:DoDelta(sanitytogain)
 		
 		local currentSanity = inst.components.sanity:GetPercent()
 		if inst.components.sanity:IsSane() then 
@@ -170,8 +171,6 @@ local function growlie(inst)
 		else
    			inst.components.sanity.sane = false
 		end
-
-		inst.components.sanity:Recalc(1)
   
   		inst.components.playervision:ForceNightVision(true)
  	end
