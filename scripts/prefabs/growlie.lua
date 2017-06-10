@@ -156,12 +156,7 @@ local function growlie(inst)
   		inst.components.combat.min_attack_period = 0.5
   		inst.components.sanity.night_drain_mult = 0.0
 
-  		local sanityMultiple = 1
-		if inst.level > 0 then
-   			sanityMultiple = inst.level
-		end
-
-  		local sanitytogain = inst.components.sanity.max * (sanityMultiple * 0.0001)
+  		local sanitytogain = inst.components.sanity.max * (inst.level * 0.0001)
 		inst.components.sanity.current = sanitytogain + inst.components.sanity.current
 		
 		local currentSanity = inst.components.sanity:GetPercent()
@@ -192,7 +187,7 @@ local function applyupgrades(inst)
 
 	inst.components.hunger.max = math.ceil (100 + upgrades * 5)
 	inst.components.health.maxhealth = math.ceil (150 + upgrades * 5)
-	inst.components.sanity.max = math.ceil (100 + upgrades * 5)
+	--inst.components.sanity.max = math.ceil (100 + upgrades * 5)
 	
 	inst.components.talker:Say("Level : ".. (inst.level))
 	
@@ -240,6 +235,7 @@ local master_postinit = function(inst)
 	
 	inst.components.health:SetMaxHealth(100)
 	inst.components.hunger:SetMax(100)
+	inst.components.sanity:SetMax(100)
 	inst.components.eater.stale_hunger = 1
     inst.components.eater.stale_health = 1
 
