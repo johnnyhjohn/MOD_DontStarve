@@ -157,18 +157,25 @@ local function growlie(inst)
   		inst.components.sanity.night_drain_mult = 0.0
 
   		local sanitytogain = inst.components.sanity.max * (inst.level * 0.0001)
-		inst.components.sanity.current = sanitytogain + inst.components.sanity.current
-		
+		--inst.components.sanity.current = sanitytogain + inst.components.sanity.current
+		inst.components.sanity:DoDelta(sanitytogain)
+
 		local currentSanity = inst.components.sanity:GetPercent()
 		if inst.components.sanity:IsSane() then 
  			inst.components.sanity.sane = true
 		else
    			inst.components.sanity.sane = false
 		end
-
-		inst.components.sanity:Recalc(1)
   
   		inst.components.playervision:ForceNightVision(true)
+		local NIGHTVISION_COLOURCUBES = {
+		    day = "images/colour_cubes/night04_cc.tex",
+		    dusk = "images/colour_cubes/night04_cc.tex",
+		    night = "images/colour_cubes/night04_cc.tex",
+		    full_moon = "images/colour_cubes/night04_cc.tex",
+		}
+
+  		inst.components.playervision:SetCustomCCTable(NIGHTVISION_COLOURCUBES)
  	end
 end
 
