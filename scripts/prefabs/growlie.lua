@@ -179,7 +179,7 @@ local function growlie(inst)
 		    night = "images/colour_cubes/ghost_cc.tex",
 		    full_moon = "images/colour_cubes/ghost_cc.tex",
 		}
-		
+
   		inst.components.playervision:SetCustomCCTable(NIGHTVISION_COLOURCUBES)
  	end
 end
@@ -199,7 +199,7 @@ local function applyupgrades(inst)
 
 	inst.components.hunger.max = math.ceil (100 + upgrades * 5)
 	inst.components.health.maxhealth = math.ceil (150 + upgrades * 5)
-	inst.components.sanity.max = math.ceil (100 + upgrades * 5)
+	-- inst.components.sanity.max = math.ceil (100 + upgrades * 5)
 	
 	inst.components.talker:Say("Level : ".. (inst.level))
 	
@@ -247,6 +247,7 @@ local master_postinit = function(inst)
 	
 	inst.components.health:SetMaxHealth(100)
 	inst.components.hunger:SetMax(100)
+	inst.components.sanity:SetMax(100)
 	inst.components.eater.stale_hunger = 1
     inst.components.eater.stale_health = 1
 
