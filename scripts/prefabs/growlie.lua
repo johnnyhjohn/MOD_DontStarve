@@ -243,6 +243,17 @@ end
 local function onsave(inst, data)
 	data.level = inst.level
 end
+--- FUNÇÃO DE REGEN QUANDO MATA UM MONSTRO OU ANIMAL
+local function OnEntityDied(data, inst)	
+	if data.afflicter ~= nil 
+		and ( data.inst:HasTag("monster") 
+		or data.inst:HasTag("killer") 
+		or data.inst:HasTag("animal") )		
+		and data.afflicter:HasTag("player") then
+			inst.components.talker:Say("Matei")
+			inst.components.health:DoDelta(20)
+	end
+end
 
 local master_postinit = function(inst)
 	inst.soundsname = "wendy"	
@@ -260,26 +271,9 @@ local master_postinit = function(inst)
 
 	local refreshTime = 1/5
  	inst:DoPeriodicTask(refreshTime, function() growlie(inst, refreshTime) end)
-	
-end
-
-return MakePlayerCharacter("growlie", prefabs, assets, common_postinit, master_postinit, start_inv)
-	
-	
-	inst.components.health:SetMaxHealth(100)
-	inst.components.hunger:SetMax(100)
-	inst.components.sanity:SetMax(100)
-	inst.components.eater.stale_hunger = 1
-    inst.components.eater.stale_health = 1
-
-    inst.level = 0
-	inst.components.eater:SetOnEatFn(oneat)
-	inst.OnSave = onsave
-	inst.OnPreLoad = onpreload
-
-	local refreshTime = 1/5
- 	inst:DoPeriodicTask(refreshTime, function() growlie(inst, refreshTime) end)
-	
+ 	inst:ListenForEvent("entity_death", function(world, data) 
+ 		OnEntityDied(data, inst) 
+ 	end, TheWorld)
 end
 
 return MakePlayerCharacter("growlie", prefabs, assets, common_postinit, master_postinit, start_inv)
