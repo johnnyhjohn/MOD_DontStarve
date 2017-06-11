@@ -1,9 +1,6 @@
-
 local MakePlayerCharacter = require "prefabs/player_common"
 
-
 local assets = {
-
         Asset( "ANIM", "anim/player_basic.zip" ),
         Asset( "ANIM", "anim/player_idles_shiver.zip" ),
         Asset( "ANIM", "anim/player_actions.zip" ),
@@ -192,8 +189,9 @@ end
 
 local function applyupgrades(inst)
 
+	local level = inst.level
 	local max_upgrades = 30
-	local upgrades = math.min(inst.level, max_upgrades)
+	local upgrades = math.min(level, max_upgrades)
 
 	local hunger_percent = inst.components.hunger:GetPercent()
 	local health_percent = inst.components.health:GetPercent()
@@ -201,13 +199,18 @@ local function applyupgrades(inst)
 
 	inst.components.hunger.max = math.ceil (100 + upgrades * 5)
 	inst.components.health.maxhealth = math.ceil (150 + upgrades * 5)
-	-- inst.components.sanity.max = math.ceil (100 + upgrades * 5)
-	
-	inst.components.talker:Say("Level : ".. (inst.level))
-	
-	if inst.level >29 then
-		inst.components.talker:Say("Level : Max!")
-	end
+
+	if level < 5 then
+		inst.components.talker:Say("Disgusting!")
+	elseif level ==  5 then
+		inst.components.talker:Say("I am getting stronger!")
+	elseif level == 10 then
+		inst.components.talker:Say("More!")
+	elseif level == 20 then
+		inst.components.talker:Say("More! More!")
+	elseif level > 29 then
+		inst.components.talker:Say("Ascension!")
+	end	
 
 	inst.components.hunger:SetPercent(hunger_percent)
 	inst.components.health:SetPercent(health_percent)
@@ -250,7 +253,6 @@ local function OnEntityDied(data, inst)
 		or data.inst:HasTag("killer") 
 		or data.inst:HasTag("animal") )		
 		and data.afflicter:HasTag("player") then
-			inst.components.talker:Say("Matei")
 			inst.components.health:DoDelta(20)
 	end
 end
@@ -271,8 +273,11 @@ local master_postinit = function(inst)
 
 	local refreshTime = 1/5
  	inst:DoPeriodicTask(refreshTime, function() growlie(inst, refreshTime) end)
+
  	inst:ListenForEvent("entity_death", function(world, data) 
- 		OnEntityDied(data, inst) 
+ 		if inst.level > 9 then
+ 			OnEntityDied(data, inst) 
+ 		end
  	end, TheWorld)
 end
 
