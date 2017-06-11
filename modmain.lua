@@ -1,35 +1,38 @@
-TUNING.SPEAR_GROWLIE_USES = 150
-TUNING.SPEAR_GROWLIE_DAMAGE = 75
-
 PrefabFiles = {
-	"growlie",
-	"spear_growlie"
+	"waristela",
+	"waristela_none",
 }
 
 Assets = {
-    Asset( "IMAGE", "images/saveslot_portraits/growlie.tex" ),
-    Asset( "ATLAS", "images/saveslot_portraits/growlie.xml" ),
+    Asset( "IMAGE", "images/saveslot_portraits/waristela.tex" ),
+    Asset( "ATLAS", "images/saveslot_portraits/waristela.xml" ),
 
-    Asset( "IMAGE", "images/selectscreen_portraits/growlie.tex" ),
-    Asset( "ATLAS", "images/selectscreen_portraits/growlie.xml" ),
+    Asset( "IMAGE", "images/selectscreen_portraits/waristela.tex" ),
+    Asset( "ATLAS", "images/selectscreen_portraits/waristela.xml" ),
 	
-    Asset( "IMAGE", "images/selectscreen_portraits/growlie_silho.tex" ),
-    Asset( "ATLAS", "images/selectscreen_portraits/growlie_silho.xml" ),
+    Asset( "IMAGE", "images/selectscreen_portraits/waristela_silho.tex" ),
+    Asset( "ATLAS", "images/selectscreen_portraits/waristela_silho.xml" ),
 
-    Asset( "IMAGE", "bigportraits/growlie.tex" ),
-    Asset( "ATLAS", "bigportraits/growlie.xml" ),
+    Asset( "IMAGE", "bigportraits/waristela.tex" ),
+    Asset( "ATLAS", "bigportraits/waristela.xml" ),
 	
-	Asset( "IMAGE", "images/map_icons/growlie.tex" ),
-	Asset( "ATLAS", "images/map_icons/growlie.xml" ),
+	Asset( "IMAGE", "images/map_icons/waristela.tex" ),
+	Asset( "ATLAS", "images/map_icons/waristela.xml" ),
 	
-	Asset( "IMAGE", "images/avatars/avatar_growlie.tex" ),
-    Asset( "ATLAS", "images/avatars/avatar_growlie.xml" ),
+	Asset( "IMAGE", "images/avatars/avatar_waristela.tex" ),
+    Asset( "ATLAS", "images/avatars/avatar_waristela.xml" ),
 	
-	Asset( "IMAGE", "images/avatars/avatar_ghost_growlie.tex" ),
-    Asset( "ATLAS", "images/avatars/avatar_ghost_growlie.xml" ),
+	Asset( "IMAGE", "images/avatars/avatar_ghost_waristela.tex" ),
+    Asset( "ATLAS", "images/avatars/avatar_ghost_waristela.xml" ),
 	
-	Asset("IMAGE", "images/inventoryimages/spear_growlie.tex"),
-	Asset("ATLAS", "images/inventoryimages/spear_growlie.xml"),
+	Asset( "IMAGE", "images/avatars/self_inspect_waristela.tex" ),
+    Asset( "ATLAS", "images/avatars/self_inspect_waristela.xml" ),
+	
+	Asset( "IMAGE", "images/names_waristela.tex" ),
+    Asset( "ATLAS", "images/names_waristela.xml" ),
+	
+    Asset( "IMAGE", "bigportraits/waristela_none.tex" ),
+    Asset( "ATLAS", "bigportraits/waristela_none.xml" ),
 
 }
 
@@ -37,42 +40,28 @@ local require = GLOBAL.require
 local STRINGS = GLOBAL.STRINGS
 
 -- The character select screen lines
-STRINGS.CHARACTER_TITLES.growlie = "The Monster Ghoul"
-STRINGS.CHARACTER_NAMES.growlie = "Waristela"
-STRINGS.CHARACTER_DESCRIPTIONS.growlie = "*Eat raw monster meat and become a monster.\n*Enjoys the night."
-STRINGS.CHARACTER_QUOTES.growlie = "\"I wasn't supposed to be in here.\""
+STRINGS.CHARACTER_TITLES.waristela = "The Monster Ghoul"
+STRINGS.CHARACTER_NAMES.waristela = "Waristela"
+STRINGS.CHARACTER_DESCRIPTIONS.waristela = "*Eat raw monster meat and become a monster."
+STRINGS.CHARACTER_QUOTES.waristela = "\"I wasn't supposed to be here.\""
 
 -- Custom speech strings
-STRINGS.CHARACTERS.GROWLIE = require "speech_growlie"
+STRINGS.CHARACTERS.WARISTELA = require "speech_waristela"
 
 -- The character's name as appears in-game 
-STRINGS.NAMES.GROWLIE = "Waristela"
+STRINGS.NAMES.WARISTELA = "Waristela"
 
 -- The default responses of examining the character
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.GROWLIE = 
 {
-	GENERIC = "It's Waristela!",
+	GENERIC = "Waristela!",
 	ATTACKER = "That Waristela looks shifty...",
-	MURDERER = "Murderer!",
+	MURDERER = "Monster!",
 	REVIVER = "Waristela, friend of ghosts.",
 	GHOST = "Waristela could use a heart.",
 }
 
-
-AddMinimapAtlas("images/map_icons/growlie.xml")
-
-local Ingredient = GLOBAL.Ingredient
-local RECIPETABS = GLOBAL.RECIPETABS
-local STRINGS = GLOBAL.STRINGS
-local TECH = GLOBAL.TECH
-
-GLOBAL.STRINGS.NAMES.SPEAR_GROWLIE = "Growlie's Spear"
-GLOBAL.STRINGS.RECIPE_DESC.SPEAR_GROWLIE = "Steal the souls of the lost today!"
-GLOBAL.STRINGS.CHARACTERS.GENERIC.DESCRIBE.SPEAR_GROWLIE = "It's Growlie's spear."
-
-local spear_growlie = GLOBAL.Recipe("spear_growlie", { Ingredient("twigs", 3), Ingredient("nightmarefuel", 4), Ingredient("purplegem", 1)}, RECIPETABS.WAR,  TECH.SCIENCE_TWO)
-spear_growlie.atlas = "images/inventoryimages/spear_growlie.xml"
+AddMinimapAtlas("images/map_icons/waristela.xml")
 
 -- Add mod character to mod character list. Also specify a gender. Possible genders are MALE, FEMALE, ROBOT, NEUTRAL, and PLURAL.
-AddModCharacter("growlie", "FEMALE")
-
+AddModCharacter("waristela", "FEMALE")
