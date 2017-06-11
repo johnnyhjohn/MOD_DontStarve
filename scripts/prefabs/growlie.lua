@@ -253,7 +253,17 @@ local function OnEntityDied(data, inst)
 		or data.inst:HasTag("killer") 
 		or data.inst:HasTag("animal") )		
 		and data.afflicter:HasTag("player") then
-			inst.components.health:DoDelta(20)
+
+			if inst.level > 9 and inst.level < 15 then
+				inst.components.health:DoDelta(3)
+			elseif inst.level > 14 and inst.level < 20 then
+				inst.components.health:DoDelta(5)
+			elseif inst.level > 19 and inst.level < 25 then
+				inst.components.health:DoDelta(8)
+			elseif inst.level > 29 then
+				inst.components.health:DoDelta(10)
+			end
+			
 	end
 end
 
